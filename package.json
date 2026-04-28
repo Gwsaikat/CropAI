@@ -1,0 +1,26 @@
+{
+  "name": "cropai",
+  "version": "2.0.0",
+  "description": "AI-powered federated crop disease detection platform",
+  "private": true,
+  "scripts": {
+    "install:all": "cd client && npm install && cd ../server && npm install",
+    "dev:client": "cd client && npm start",
+    "dev:server": "cd server && npm run dev",
+    "start:server": "cd server && npm start",
+    "build": "cd client && npm run build"
+  },
+  "keywords": [
+    "agriculture",
+    "AI",
+    "crop-disease",
+    "machine-learning",
+    "federated-learning",
+    "react",
+    "nodejs",
+    "supabase",
+    "tensorflow"
+  ],
+  "author": "Gwsaikat",
+  "license": "MIT"
+}
