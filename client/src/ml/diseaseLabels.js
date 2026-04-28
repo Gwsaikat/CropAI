@@ -1,0 +1,60 @@
+// Disease label mapping for PlantVillage 38-class dataset
+// Maps model class index → { label, crop, display }
+
+export const DISEASE_LABELS = [
+    { index: 0, key: 'Apple___Apple_scab', label: 'Apple Scab', crop: 'Apple', severity: 'medium' },
+    { index: 1, key: 'Apple___Black_rot', label: 'Black Rot', crop: 'Apple', severity: 'high' },
+    { index: 2, key: 'Apple___Cedar_apple_rust', label: 'Cedar Apple Rust', crop: 'Apple', severity: 'medium' },
+    { index: 3, key: 'Apple___healthy', label: 'Healthy', crop: 'Apple', severity: 'none' },
+    { index: 4, key: 'Blueberry___healthy', label: 'Healthy', crop: 'Blueberry', severity: 'none' },
+    { index: 5, key: 'Cherry_(including_sour)___Powdery_mildew', label: 'Powdery Mildew', crop: 'Cherry', severity: 'medium' },
+    { index: 6, key: 'Cherry_(including_sour)___healthy', label: 'Healthy', crop: 'Cherry', severity: 'none' },
+    { index: 7, key: 'Corn_(maize)___Cercospora_leaf_spot', label: 'Cercospora Leaf Spot', crop: 'Maize', severity: 'medium' },
+    { index: 8, key: 'Corn_(maize)___Common_rust_', label: 'Common Rust', crop: 'Maize', severity: 'medium' },
+    { index: 9, key: 'Corn_(maize)___Northern_Leaf_Blight', label: 'Northern Leaf Blight', crop: 'Maize', severity: 'high' },
+    { index: 10, key: 'Corn_(maize)___healthy', label: 'Healthy', crop: 'Maize', severity: 'none' },
+    { index: 11, key: 'Grape___Black_rot', label: 'Black Rot', crop: 'Grape', severity: 'high' },
+    { index: 12, key: 'Grape___Esca_(Black_Measles)', label: 'Black Measles (Esca)', crop: 'Grape', severity: 'high' },
+    { index: 13, key: 'Grape___Leaf_blight_(Isariopsis_Leaf_Spot)', label: 'Leaf Blight', crop: 'Grape', severity: 'medium' },
+    { index: 14, key: 'Grape___healthy', label: 'Healthy', crop: 'Grape', severity: 'none' },
+    { index: 15, key: 'Orange___Haunglongbing_(Citrus_greening)', label: 'Citrus Greening (HLB)', crop: 'Orange', severity: 'critical' },
+    { index: 16, key: 'Peach___Bacterial_spot', label: 'Bacterial Spot', crop: 'Peach', severity: 'high' },
+    { index: 17, key: 'Peach___healthy', label: 'Healthy', crop: 'Peach', severity: 'none' },
+    { index: 18, key: 'Pepper,_bell___Bacterial_spot', label: 'Bacterial Spot', crop: 'Pepper', severity: 'medium' },
+    { index: 19, key: 'Pepper,_bell___healthy', label: 'Healthy', crop: 'Pepper', severity: 'none' },
+    { index: 20, key: 'Potato___Early_blight', label: 'Early Blight', crop: 'Potato', severity: 'medium' },
+    { index: 21, key: 'Potato___Late_blight', label: 'Late Blight', crop: 'Potato', severity: 'critical' },
+    { index: 22, key: 'Potato___healthy', label: 'Healthy', crop: 'Potato', severity: 'none' },
+    { index: 23, key: 'Raspberry___healthy', label: 'Healthy', crop: 'Raspberry', severity: 'none' },
+    { index: 24, key: 'Rice___Blast', label: 'Rice Blast', crop: 'Rice', severity: 'high' },
+    { index: 25, key: 'Rice___Brown_spot', label: 'Brown Spot', crop: 'Rice', severity: 'medium' },
+    { index: 26, key: 'Rice___Leaf_scald', label: 'Leaf Scald', crop: 'Rice', severity: 'medium' },
+    { index: 27, key: 'Soybean___healthy', label: 'Healthy', crop: 'Soybean', severity: 'none' },
+    { index: 28, key: 'Squash___Powdery_mildew', label: 'Powdery Mildew', crop: 'Squash', severity: 'medium' },
+    { index: 29, key: 'Strawberry___Leaf_scorch', label: 'Leaf Scorch', crop: 'Strawberry', severity: 'medium' },
+    { index: 30, key: 'Strawberry___healthy', label: 'Healthy', crop: 'Strawberry', severity: 'none' },
+    { index: 31, key: 'Tomato___Bacterial_spot', label: 'Bacterial Spot', crop: 'Tomato', severity: 'high' },
+    { index: 32, key: 'Tomato___Early_blight', label: 'Early Blight', crop: 'Tomato', severity: 'medium' },
+    { index: 33, key: 'Tomato___Late_blight', label: 'Late Blight', crop: 'Tomato', severity: 'critical' },
+    { index: 34, key: 'Tomato___Leaf_Mold', label: 'Leaf Mold', crop: 'Tomato', severity: 'medium' },
+    { index: 35, key: 'Tomato___Septoria_leaf_spot', label: 'Septoria Leaf Spot', crop: 'Tomato', severity: 'medium' },
+    { index: 36, key: 'Tomato___Spider_mites', label: 'Spider Mites', crop: 'Tomato', severity: 'high' },
+    { index: 37, key: 'Tomato___Target_Spot', label: 'Target Spot', crop: 'Tomato', severity: 'medium' },
+    { index: 38, key: 'Tomato___Tomato_Yellow_Leaf_Curl_Virus', label: 'Yellow Leaf Curl Virus', crop: 'Tomato', severity: 'critical' },
+    { index: 39, key: 'Tomato___Tomato_mosaic_virus', label: 'Mosaic Virus', crop: 'Tomato', severity: 'high' },
+    { index: 40, key: 'Tomato___healthy', label: 'Healthy', crop: 'Tomato', severity: 'none' },
+    { index: 41, key: 'Wheat___Leaf_rust', label: 'Leaf Rust', crop: 'Wheat', severity: 'high' },
+    { index: 42, key: 'Wheat___Stem_rust', label: 'Stem Rust', crop: 'Wheat', severity: 'critical' },
+    { index: 43, key: 'Wheat___Yellow_rust', label: 'Yellow Rust', crop: 'Wheat', severity: 'high' },
+];
+
+export const SEVERITY_COLORS = {
+    none: '#22c55e',
+    low: '#4ade80',
+    medium: '#fbbf24',
+    high: '#f97316',
+    critical: '#ef4444',
+};
+
+export const getLabelByIndex = (idx) => DISEASE_LABELS[idx] || DISEASE_LABELS[0];
+export const getLabelByKey = (key) => DISEASE_LABELS.find(d => d.key === key);
