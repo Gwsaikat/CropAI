@@ -7,25 +7,14 @@ const { Server } = require('socket.io');
 dotenv.config();
 
 const app = express();
-const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: [
-      'http://localhost:3000',
-      'http://localhost:5173',
-      process.env.CLIENT_URL || '',
-    ].filter(Boolean),
-    methods: ['GET', 'POST'],
-  },
-});
 
-// Middleware
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5173',
   process.env.CLIENT_URL || '',
 ].filter(Boolean);
 
+// Middleware
 app.use(cors({
   origin: (origin, callback) => {
     // Allow requests with no origin (e.g. mobile apps, Postman) or from allowed list
@@ -56,37 +45,52 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Socket.io — Real-time federated model updates
-io.on('connection', (socket) => {
-  console.log(`🔌 Client connected: ${socket.id}`);
-
-  socket.on('join-region', (region) => {
-    socket.join(region);
-    console.log(`📍 ${socket.id} joined region: ${region}`);
+const createRealtimeServer = () => {
+  const server = http.createServer(app);
+  const io = new Server(server, {
+    cors: {
+      origin: allowedOrigins,
+      methods: ['GET', 'POST'],
+    },
   });
 
-  socket.on('federated-update', (data) => {
-    io.emit('model-updated', {
-      round: data.round,
-      accuracy: data.accuracy,
-      timestamp: new Date().toISOString(),
+  // Socket.io — Real-time federated model updates
+  io.on('connection', (socket) => {
+    console.log(`🔌 Client connected: ${socket.id}`);
+
+    socket.on('join-region', (region) => {
+      socket.join(region);
+      console.log(`📍 ${socket.id} joined region: ${region}`);
+    });
+
+    socket.on('federated-update', (data) => {
+      io.emit('model-updated', {
+        round: data.round,
+        accuracy: data.accuracy,
+        timestamp: new Date().toISOString(),
+      });
+    });
+
+    socket.on('disconnect', () => {
+      console.log(`🔌 Client disconnected: ${socket.id}`);
     });
   });
 
-  socket.on('disconnect', () => {
-    console.log(`🔌 Client disconnected: ${socket.id}`);
+  app.set('io', io);
+
+  return { server, io };
+};
+
+if (process.env.VERCEL !== '1') {
+  const { server } = createRealtimeServer();
+  const PORT = process.env.PORT || 5000;
+
+  server.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+    console.log(`📡 Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log('🌿 Federated Crop Disease Detector — Supabase Backend Ready');
+    console.log(`⚡ Supabase: ${process.env.SUPABASE_URL ? '✅ Connected' : '❌ SUPABASE_URL missing!'}`);
   });
-});
+}
 
-// Make io available to routes
-app.set('io', io);
-
-const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`📡 Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`🌿 Federated Crop Disease Detector — Supabase Backend Ready`);
-  console.log(`⚡ Supabase: ${process.env.SUPABASE_URL ? '✅ Connected' : '❌ SUPABASE_URL missing!'}`);
-});
-
-module.exports = { app, io };
+module.exports = app;
